@@ -1,0 +1,3 @@
+name: pulumi-intro
+runtime: nodejs
+description: A minimal AWS TypeScript Pulumi program running in a devbox environment

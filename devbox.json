@@ -1,0 +1,23 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.14.0/.schema/devbox.schema.json",
+  "packages": [
+    "awscli2@latest",
+    "pulumi@latest",
+    "pulumictl@latest",
+    "git@latest",
+    "nodejs@23.9.0",
+    "typescript@5.7.3",
+    "pulumiPackages.pulumi-language-nodejs@latest"
+  ],
+  "env_from": ".env",
+  "shell": {
+    "init_hook": [
+      "echo 'Welcome to devbox!' > /dev/null"
+    ],
+    "scripts": {
+      "test": [
+        "echo \"Error: no test specified\" && exit 1"
+      ]
+    }
+  }
+}
