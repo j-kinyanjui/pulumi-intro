@@ -1,11 +1,19 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as aws from "@pulumi/aws";
 import {AmplifyClient, StartDeploymentCommand} from "@aws-sdk/client-amplify";
+import {getStack} from "@pulumi/pulumi";
+
+const config = new pulumi.Config();
+const customBucketName = config.require("bucketName");
 
 const accountId = aws.getCallerIdentityOutput({}).accountId;
 
 // Create an AWS resource (S3 Bucket)
-const bucket = new aws.s3.BucketV2("pulumi-intro-bucket", {tags: {name: "pulumi-tutorial"}});
+const bucket = new aws.s3.BucketV2("pulumi-intro-bucket",
+    {   bucket: `${customBucketName}-${getStack()}`,
+        tags: {name: "pulumi-tutorial"}
+    }
+);
 
 const website = new aws.s3.BucketWebsiteConfigurationV2("website", {
     bucket: bucket.id,
